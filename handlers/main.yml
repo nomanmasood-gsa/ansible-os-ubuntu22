@@ -87,9 +87,9 @@
       sysctl_set: true
   when: ansible_virtualization_type != "docker"
 
-- name: Reload ufw
-  community.general.ufw:
-      state: reloaded
+# - name: Reload ufw
+#   community.general.ufw:
+#       state: reloaded
 
 - name: Iptables persistent
   ansible.builtin.shell: bash -c "iptables-save > /etc/iptables/rules.v4"
