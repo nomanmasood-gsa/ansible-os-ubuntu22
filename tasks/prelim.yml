@@ -113,17 +113,17 @@
       - auditd
       - always
 
-- name: "PRELIM | 5.3.4 | Find all sudoers files."
-  ansible.builtin.shell: "find /etc/sudoers /etc/sudoers.d/ -type f ! -name '*~' ! -name '*.*'"
-  changed_when: false
-  failed_when: false
-  check_mode: false
-  register: ubtu22cis_sudoers_files
-  when:
-      - ubtu22cis_rule_5_3_4 or
-        ubtu22cis_rule_5_3_5
-  tags:
-      - always
+# - name: "PRELIM | 5.3.4 | Find all sudoers files."
+#   ansible.builtin.shell: "find /etc/sudoers /etc/sudoers.d/ -type f ! -name '*~' ! -name '*.*'"
+#   changed_when: false
+#   failed_when: false
+#   check_mode: false
+#   register: ubtu22cis_sudoers_files
+#   when:
+#       - ubtu22cis_rule_5_3_4 or
+#         ubtu22cis_rule_5_3_5
+#   tags:
+#       - always
 
 - name: "PRELIM | Discover Interactive UID MIN and MIN from logins.def"
   block:
