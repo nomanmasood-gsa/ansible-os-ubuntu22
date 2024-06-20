@@ -472,8 +472,8 @@ ubtu22cis_disable_dynamic_motd: true
 # Control 1.7.2
 # This will be the motd banner must not contain the below items in order to be compliant with Ubuntu 20 CIS
 # \m, \r, \s, \v or references to the OS platform
-ubtu22cis_warning_banner: |
-        This is a U.S. General Services Administration Federal Government computer system that is FOR OFFICIAL USE ONLY. This system is subject to monitoring. Therefore, no expectation of privacy is to be assumed. Individuals found performing unauthorized activities may be subject to disciplinary action including criminal prosecution.
+# ubtu22cis_warning_banner: |
+#         This is a U.S. General Services Administration Federal Government computer system that is FOR OFFICIAL USE ONLY. This system is subject to monitoring. Therefore, no expectation of privacy is to be assumed. Individuals found performing unauthorized activities may be subject to disciplinary action including criminal prosecution.
 
 # Control 1.8.4
 # Settings for desktop
