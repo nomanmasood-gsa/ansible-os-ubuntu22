@@ -1,9 +1,9 @@
 ---
 
-ubtu22cis_section1: false
-ubtu22cis_section2: true
-ubtu22cis_section3: true
-ubtu22cis_section4: true
+ubtu22cis_section1: true
+ubtu22cis_section2: false
+ubtu22cis_section3: false
+ubtu22cis_section4: false
 ubtu22cis_section5: false
 ubtu22cis_section6: false
 
