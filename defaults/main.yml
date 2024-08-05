@@ -5,7 +5,7 @@ ubtu22cis_section2: true
 ubtu22cis_section3: false
 ubtu22cis_section4: false
 ubtu22cis_section5: false
-ubtu22cis_section6: false
+ubtu22cis_section6: true
 
 # System will reboot if false, can give better audit results
 skip_reboot: true
