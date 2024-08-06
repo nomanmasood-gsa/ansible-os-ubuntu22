@@ -1,6 +1,6 @@
 ---
 
-ubtu22cis_section1: false
+ubtu22cis_section1: true
 ubtu22cis_section2: true
 ubtu22cis_section3: false
 ubtu22cis_section4: true
@@ -102,10 +102,10 @@ ubtu22cis_rule_1_5_1: true
 ubtu22cis_rule_1_5_2: true
 ubtu22cis_rule_1_5_3: true
 ubtu22cis_rule_1_5_4: true
-ubtu22cis_rule_1_6_1_1: true
-ubtu22cis_rule_1_6_1_2: true
-ubtu22cis_rule_1_6_1_3: true
-ubtu22cis_rule_1_6_1_4: true
+ubtu22cis_rule_1_6_1_1: false
+ubtu22cis_rule_1_6_1_2: false
+ubtu22cis_rule_1_6_1_3: false
+ubtu22cis_rule_1_6_1_4: false
 ubtu22cis_rule_1_7_1: true
 ubtu22cis_rule_1_7_2: true
 ubtu22cis_rule_1_7_3: true
