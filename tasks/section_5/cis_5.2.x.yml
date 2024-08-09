@@ -381,38 +381,38 @@
       - rule_5.2.20
       - ssh
 
-# - name: "5.2.21 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
-#   ansible.builtin.lineinfile:
-#       path: /etc/ssh/sshd_config
-#       regexp: '^LoginGraceTime|^#LoginGraceTime'
-#       line: 'LoginGraceTime {{ ubtu22cis_sshd.login_grace_time }}'
-#       insertafter: '^# Authentication'
-#   notify: restart sshd
-#   when:
-#       - ubtu22cis_rule_5_2_21
-#   tags:
-#       - level1-server
-#       - level1-workstation
-#       - automated
-#       - patch
-#       - rule_5.2.21
-#       - ssh
+- name: "5.2.21 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
+  ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^LoginGraceTime|^#LoginGraceTime'
+      line: 'LoginGraceTime {{ ubtu22cis_sshd.login_grace_time }}'
+      insertafter: '^# Authentication'
+  notify: restart sshd
+  when:
+      - ubtu22cis_rule_5_2_21
+  tags:
+      - level1-server
+      - level1-workstation
+      - automated
+      - patch
+      - rule_5.2.21
+      - ssh
 
-# - name: "5.2.22 | PATCH | Ensure SSH Idle Timeout Interval is configured"
-#   ansible.builtin.lineinfile:
-#       path: /etc/ssh/sshd_config
-#       regexp: "{{ item.regexp }}"
-#       line: "{{ item.line }}"
-#   with_items:
-#       - { regexp: '^ClientAliveInterval|^#ClientAliveInterval', line: 'ClientAliveInterval {{ ubtu22cis_sshd.client_alive_interval }}' }
-#       - { regexp: '^ClientAliveCountMax|^#ClientAliveCountMax', line: 'ClientAliveCountMax {{ ubtu22cis_sshd.client_alive_count_max }}' }
-#   notify: restart sshd
-#   when:
-#       - ubtu22cis_rule_5_2_22
-#   tags:
-#       - level1-server
-#       - level1-workstation
-#       - automated
-#       - patch
-#       - rule_5.2.22
-#       - sshd
+- name: "5.2.22 | PATCH | Ensure SSH Idle Timeout Interval is configured"
+  ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+  with_items:
+      - { regexp: '^ClientAliveInterval|^#ClientAliveInterval', line: 'ClientAliveInterval {{ ubtu22cis_sshd.client_alive_interval }}' }
+      - { regexp: '^ClientAliveCountMax|^#ClientAliveCountMax', line: 'ClientAliveCountMax {{ ubtu22cis_sshd.client_alive_count_max }}' }
+  notify: restart sshd
+  when:
+      - ubtu22cis_rule_5_2_22
+  tags:
+      - level1-server
+      - level1-workstation
+      - automated
+      - patch
+      - rule_5.2.22
+      - sshd
