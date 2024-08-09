@@ -3,4 +3,4 @@
 - hosts: localhost
   connection: local
   roles:
-    - ansible-os-ubuntu22.04
+    - ansible-os-ubuntu22
