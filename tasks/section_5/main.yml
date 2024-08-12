@@ -9,8 +9,8 @@
 - name: "SECTION | 5.3 | Configure SSH Server"
   ansible.builtin.import_tasks: cis_5.3.x.yml
 
-# - name: "SECTION | 5.4.x | User PAM"
-#   ansible.builtin.import_tasks: cis_5.4.x.yml
+- name: "SECTION | 5.4.x | User PAM"
+  ansible.builtin.import_tasks: cis_5.4.x.yml
 
 - name: "SECTION | 5.5.x | User Accounts and Environment"
   ansible.builtin.import_tasks: cis_5.5.x.yml
