@@ -101,76 +101,76 @@
 #       - pam
 #       - notimplemented
 
-# - name: "5.4.3 | PATCH | Ensure password reuse is limited"
-#   block:
-#       - name: "5.4.3 | AUDIT | Ensure password reuse is limited | Confirm pam_unix.so in common-password"
-#         ansible.builtin.shell: grep 'password.*pam_unix.so' /etc/pam.d/common-password
-#         changed_when: false
-#         failed_when: false
-#         check_mode: false
-#         register: ubtu22cis_5_4_3_pam_unix_state
+- name: "5.4.3 | PATCH | Ensure password reuse is limited"
+  block:
+      - name: "5.4.3 | AUDIT | Ensure password reuse is limited | Confirm pam_unix.so in common-password"
+        ansible.builtin.shell: grep 'password.*pam_unix.so' /etc/pam.d/common-password
+        changed_when: false
+        failed_when: false
+        check_mode: false
+        register: ubtu22cis_5_4_3_pam_unix_state
 
-#       - name: "5.4.3 | PATCH | Ensure password reuse is limited | Set remember value if pam_unix does exist"
-#         ansible.builtin.lineinfile:
-#             path: /etc/pam.d/common-password
-#             regexp: '^(password\s*\[success=1 default=ignore\] pam_unix.*)(remember=([0-9]{1,})|)(.*$)'
-#             line: '\g<1>\g<2> remember={{ ubtu22cis_pamd_pwhistory_remember }}'
-#             backrefs: true
-#         when:
-#             - ubtu22cis_5_4_3_pam_unix_state.stdout | length > 0
-#             - "'remember' not in ubtu22cis_5_4_3_pam_unix_state.stdout"
+      - name: "5.4.3 | PATCH | Ensure password reuse is limited | Set remember value if pam_unix does exist"
+        ansible.builtin.lineinfile:
+            path: /etc/pam.d/common-password
+            regexp: '^(password\s*\[success=1 default=ignore\] pam_unix.*)(remember=([0-9]{1,})|)(.*$)'
+            line: '\g<1>\g<2> remember={{ ubtu22cis_pamd_pwhistory_remember }}'
+            backrefs: true
+        when:
+            - ubtu22cis_5_4_3_pam_unix_state.stdout | length > 0
+            - "'remember' not in ubtu22cis_5_4_3_pam_unix_state.stdout"
 
-#       - name: "5.4.3 | PATCH | Ensure password reuse is limited | Set remember value if pam_unix does not exist"
-#         ansible.builtin.lineinfile:
-#             path: /etc/pam.d/common-password
-#             regexp: '^password\s*\[success=1 default=ignore\] pam_unix.*'
-#             line: 'password [success=1 default=ignore] pam_unix.so obscure use_authtok try_first_pass remember={{ ubtu22cis_pamd_pwhistory_remember }}'
-#             insertafter: '^# end of pam-auth-update config'
-#         when: ubtu22cis_5_4_3_pam_unix_state.stdout | length == 0
-#   when:
-#       - ubtu22cis_rule_5_4_3
-#   tags:
-#       - level1-server
-#       - level1-workstation
-#       - automated
-#       - patch
-#       - rule_5.4.3
-#       - pam
+      - name: "5.4.3 | PATCH | Ensure password reuse is limited | Set remember value if pam_unix does not exist"
+        ansible.builtin.lineinfile:
+            path: /etc/pam.d/common-password
+            regexp: '^password\s*\[success=1 default=ignore\] pam_unix.*'
+            line: 'password [success=1 default=ignore] pam_unix.so obscure use_authtok try_first_pass remember={{ ubtu22cis_pamd_pwhistory_remember }}'
+            insertafter: '^# end of pam-auth-update config'
+        when: ubtu22cis_5_4_3_pam_unix_state.stdout | length == 0
+  when:
+      - ubtu22cis_rule_5_4_3
+  tags:
+      - level1-server
+      - level1-workstation
+      - automated
+      - patch
+      - rule_5.4.3
+      - pam
 
-# - name: "5.4.4 | PATCH | Ensure password hashing algorithm is up to date with the latest standards"
-#   block:
-#       - name: "5.4.4 | AUDIT | Ensure password hashing algorithm is up to date with the latest standards | Confirm pam_unix.so"
-#         ansible.builtin.shell: grep -v ^# /etc/pam.d/common-password | grep -E "(yescrypt|md5|bigcrypt|sha256|sha512|blowfish)"
-#         changed_when: false
-#         failed_when: false
-#         check_mode: false
-#         register: ubtu22cis_5_4_4_pam_unix_state
+- name: "5.4.4 | PATCH | Ensure password hashing algorithm is up to date with the latest standards"
+  block:
+      - name: "5.4.4 | AUDIT | Ensure password hashing algorithm is up to date with the latest standards | Confirm pam_unix.so"
+        ansible.builtin.shell: grep -v ^# /etc/pam.d/common-password | grep -E "(yescrypt|md5|bigcrypt|sha256|sha512|blowfish)"
+        changed_when: false
+        failed_when: false
+        check_mode: false
+        register: ubtu22cis_5_4_4_pam_unix_state
 
-#       - name: "5.4.4 | PATCH | Ensure password hashing algorithm is up to date with the latest standards | Set hashing if pam_unix.so exists"
-#         community.general.pamd:
-#             name: common-password
-#             type: password
-#             control: '[success=1 default=ignore]'
-#             module_path: pam_unix.so
-#             module_arguments: "{{ ubtu22cis_passwd_hash_algo }}"
-#             state: "{{ ubtu22cis_passwd_setpam_hash_algo | ternary('args_present', 'args_absent') }}"
-#         when:
-#             - ubtu22cis_5_4_4_pam_unix_state.stdout | length > 0
+      - name: "5.4.4 | PATCH | Ensure password hashing algorithm is up to date with the latest standards | Set hashing if pam_unix.so exists"
+        community.general.pamd:
+            name: common-password
+            type: password
+            control: '[success=1 default=ignore]'
+            module_path: pam_unix.so
+            module_arguments: "{{ ubtu22cis_passwd_hash_algo }}"
+            state: "{{ ubtu22cis_passwd_setpam_hash_algo | ternary('args_present', 'args_absent') }}"
+        when:
+            - ubtu22cis_5_4_4_pam_unix_state.stdout | length > 0
 
-#       - name: "5.4.4 | PATCH | Ensure password hashing algorithm is up to date with the latest standards | Set hashing if pam_unix.so does not exist"
-#         ansible.builtin.lineinfile:
-#             path: /etc/login.defs
-#             regexp: '^ENCRYPT_METHOD'
-#             line: 'ENCRYPT_METHOD {{ ubtu22cis_passwd_hash_algo }}'
-#   when:
-#       - ubtu22cis_rule_5_4_4
-#   tags:
-#       - level1-server
-#       - level1-workstation
-#       - automated
-#       - patch
-#       - rule_5.4.4
-#       - pam
+      - name: "5.4.4 | PATCH | Ensure password hashing algorithm is up to date with the latest standards | Set hashing if pam_unix.so does not exist"
+        ansible.builtin.lineinfile:
+            path: /etc/login.defs
+            regexp: '^ENCRYPT_METHOD'
+            line: 'ENCRYPT_METHOD {{ ubtu22cis_passwd_hash_algo }}'
+  when:
+      - ubtu22cis_rule_5_4_4
+  tags:
+      - level1-server
+      - level1-workstation
+      - automated
+      - patch
+      - rule_5.4.4
+      - pam
 
 # - name: "5.4.5 | PATCH | Ensure password hashing algorithm is up to date with the latest standards"
 #   block:
