@@ -524,7 +524,7 @@ ubtu22cis_sysctl_network_conf: /etc/sysctl.conf
 # The valid options to use are ufw, nftables, or iptables Laternative set to 'none' if excluded
 # Warning!! nftables is not supported in this role and will only message out if nftables is selected
 # If using nftables please manually adjust firewall settings
-ubtu22cis_firewall_package: "ufw"
+ubtu22cis_firewall_package: "iptables"
 
 # If UFW force to use syctl settings now UFW
 ubtu22cis_ufw_use_sysctl: true
