@@ -19,6 +19,7 @@
   ansible.builtin.package:
       name: nftables
       state: absent
+      purge: true
   when:
       - ubtu22cis_rule_3_5_3_1_2
       - ubtu22cis_firewall_package == "iptables"
@@ -34,6 +35,7 @@
   ansible.builtin.package:
       name: ufw
       state: absent
+      purge: true
   when:
       - ubtu22cis_rule_3_5_3_1_3
       - ubtu22cis_firewall_package == "iptables"
