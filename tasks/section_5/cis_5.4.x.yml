@@ -172,32 +172,32 @@
       - rule_5.4.4
       - pam
 
-# - name: "5.4.5 | PATCH | Ensure password hashing algorithm is up to date with the latest standards"
-#   block:
-#       - name: "5.4.5 | AUDIT | Ensure all current passwords uses the configured hashing algorithm | capture hash"
-#         ansible.builtin.shell: cat /etc/shadow | awk -F':' '{print $1" "$2}' | grep -Ev '(!|\*)'
-#         changed_when: false
-#         failed_when: false
-#         check_mode: false
-#         register: ubtu22cis_5_4_5_passwd_hash_used
+- name: "5.4.5 | PATCH | Ensure password hashing algorithm is up to date with the latest standards"
+  block:
+      - name: "5.4.5 | AUDIT | Ensure all current passwords uses the configured hashing algorithm | capture hash"
+        ansible.builtin.shell: cat /etc/shadow | awk -F':' '{print $1" "$2}' | grep -Ev '(!|\*)'
+        changed_when: false
+        failed_when: false
+        check_mode: false
+        register: ubtu22cis_5_4_5_passwd_hash_used
 
-#       # This is only looking for yescrypt if sha512 need to change the $y$ to $6$
-#       - name: "5.4.5 | AUDIT | Ensure all current passwords uses the configured hashing algorithm | check has found"
-#         ansible.builtin.debug:
-#             msg: "Warning!! Passwords found using not using {{ ubtu22cis_passwd_hash_algo }} algorithm - This required manual intervention"
-#         when: "' $y$' not in ubtu22cis_5_4_5_passwd_hash_used.stdout"
+      # This is only looking for yescrypt if sha512 need to change the $y$ to $6$
+      - name: "5.4.5 | AUDIT | Ensure all current passwords uses the configured hashing algorithm | check has found"
+        ansible.builtin.debug:
+            msg: "Warning!! Passwords found using not using {{ ubtu22cis_passwd_hash_algo }} algorithm - This required manual intervention"
+        when: "' $y$' not in ubtu22cis_5_4_5_passwd_hash_used.stdout"
 
-#       - name: "5.4.5 | WARN | Ensure all current passwords uses the configured hashing algorithm | warn_count"
-#         ansible.builtin.import_tasks: warning_facts.yml
-#         when: "' $y$' not in ubtu22cis_5_4_5_passwd_hash_used.stdout"
-#   vars:
-#       warn_control_id: '5.4.5'
-#   when:
-#       - ubtu22cis_rule_5_4_5
-#   tags:
-#       - level1-server
-#       - level1-workstation
-#       - automated
-#       - patch
-#       - rule_5.4.5
-#       - pam
+      - name: "5.4.5 | WARN | Ensure all current passwords uses the configured hashing algorithm | warn_count"
+        ansible.builtin.import_tasks: warning_facts.yml
+        when: "' $y$' not in ubtu22cis_5_4_5_passwd_hash_used.stdout"
+  vars:
+      warn_control_id: '5.4.5'
+  when:
+      - ubtu22cis_rule_5_4_5
+  tags:
+      - level1-server
+      - level1-workstation
+      - automated
+      - patch
+      - rule_5.4.5
+      - pam
