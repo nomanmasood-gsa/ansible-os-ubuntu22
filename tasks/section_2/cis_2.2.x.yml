@@ -34,6 +34,7 @@
         ansible.builtin.package:
             name: avahi-daemon
             state: absent
+            purge: true
   when:
       - ubtu22cis_rule_2_2_2
       - not ubtu22cis_avahi_server
@@ -190,6 +191,7 @@
   ansible.builtin.package:
       name: samba
       state: absent
+      purge: true
   when:
       - ubtu22cis_rule_2_2_11
       - not ubtu22cis_smb_server

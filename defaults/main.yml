@@ -510,7 +510,7 @@ ubtu22cis_is_mail_server: false
 # Section 3 Control Variables
 # Control 3.1.1
 # How to disable ipv6 either via grub or sysctl settings options: grub or sysctl
-ubuntu22cis_ipv6_disable: grub
+ubuntu22cis_ipv6_disable: sysctl
 
 # Control 3.1.2
 # ubtu22cis_install_network_manager determines if this role can install network manager
